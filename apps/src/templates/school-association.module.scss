@@ -1,0 +1,61 @@
+@import 'color.scss';
+@import 'font.scss';
+
+.schoolAssociationWrapper {
+  text-align: center;
+  display: grid;
+
+  h2 {
+    margin-bottom: 0.25rem;
+  }
+
+  label {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  input {
+    width: 100%;
+    box-sizing: border-box;
+    height: 46px !important;
+    margin-top: 0.37rem !important;
+    text-indent: 0.25rem;
+  }
+
+  select {
+    font-weight: 400 !important;
+    width: 100% !important;
+  }
+
+  button {
+    border: 0;
+    padding-inline: 0;
+
+    &:hover {
+      background: none !important;
+      text-decoration: underline !important;
+    }
+  }
+
+  .errorMessage {
+    margin-block: 0.4375rem 0;
+    color: $light_negative_500;
+  }
+}
+
+.inputContainer {
+  justify-self: center;
+  text-align: left;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+
+  .padding {
+    padding-top: 1.125rem;
+    margin-bottom: 0;
+  }
+
+  .disabledLabel {
+    color: $light_gray_300 !important;
+  }
+}

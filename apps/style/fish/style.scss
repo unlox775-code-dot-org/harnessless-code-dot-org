@@ -1,0 +1,29 @@
+@import 'font';
+
+#codeWorkspace {
+  border: none !important;
+}
+
+button {
+  padding: 1.5% 3%;
+
+  &:active {
+    border: none !important;
+  }
+}
+
+#pondTextMarkdown p {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+#pondTextMarkdown strong {
+  @include main-font-regular;
+  color: #eb5757;
+}
+
+#pondTextMarkdown em {
+  @include main-font-regular;
+  color: #56c568;
+}

@@ -1,0 +1,25 @@
+:css
+  .indent {
+    margin-left: 1em;
+    }
+
+Teacher Info:
+
+%table.indent
+  %tr
+    %td Name:
+    %td
+      = @enrollment.full_name
+  %tr
+    %td Email:
+    %td
+      = @enrollment.email
+  - if @enrollment.school_district_name && @enrollment.school_name
+    %tr
+      %td District:
+      %td
+        = @enrollment.school_district_name
+    %tr
+      %td School:
+      %td
+        = @enrollment.school_name

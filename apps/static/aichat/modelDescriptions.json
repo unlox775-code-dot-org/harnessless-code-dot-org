@@ -1,0 +1,32 @@
+[
+  {
+    "id": "gen-ai-mistral-7b-inst-v01",
+    "name": "Mistral 7B Instruct v01",
+    "overview": "A generative language model pre-trained with 7 billion parameters, designed for following instructions.",
+    "trainingData": "The MistralAI team trained mistralai/Mistral-7B-v0.1 on datasets taken directly from the openWeb. The v2 model took the base model and finetuned it using additional data from several sources, focusing on improving logic and reasoning or recalling trivia or other facts."
+  },
+  {
+    "id": "gen-ai-biomistral-7b",
+    "name": "BioMistral 7B",
+    "overview": "A fine-tuned Large Language Model across specialized domains such as healthcare and medicine.",
+    "trainingData": "Utilizing Mistral7b- instruct v2 as its foundation model and further pre-trained on PubMed Central,  a free full-text archive of biomedical and life sciences journal literature at the U.S. National Institutes of Health's National Library of Medicine."
+  },
+  {
+    "id": "gen-ai-mistral-pirate-7b",
+    "name": "Mistral Pirate 7B",
+    "overview": "A fine-tuned language model made for generating intricate and authentic pirate-themed content.",
+    "trainingData": "Utilizing Mistral Instruct v0.2 as its foundational model and trained on a pirate themed dataset derived from \"Moby Dick\" by Herman Melville."
+  },
+  {
+    "id": "gen-ai-karen-creative-mistral-7b",
+    "name": "Karen The Editor Creative Mistral 7B",
+    "overview": "A fine-tuned language model created to fix grammatical and spelling errors in US English without altering the style of the text. ",
+    "trainingData": "Utilizing Mistral Instruct v0.2 as its foundational model and trained on fiction and non-fiction US text where errors were intentionally inserted by another large language model. "
+  },
+  {
+    "id": "gen-ai-arithmo2-mistral-7b",
+    "name": "Arithmo2 Mistral 7B",
+    "overview": "A fine-tuned model that is trained to answer and reason through mathematical problems.",
+    "trainingData": "Coming soon!"
+  }
+]

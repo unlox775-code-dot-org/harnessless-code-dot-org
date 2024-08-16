@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Layer_2"
+   viewBox="0 0 18 18"
+   version="1.1"
+   sodipodi:docname="Mark-White.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
+   width="18"
+   height="18"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.1934507"
+     inkscape:cx="-790.89919"
+     inkscape:cy="87.877688"
+     inkscape:window-width="1312"
+     inkscape:window-height="449"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Layer_2" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">.cls-1{fill:#fff;fill-rule:evenodd;}</style>
+  </defs>
+  <path
+     class="cls-1"
+     d="M 18,4.63362 C 16.42064,1.83902 13.26192,0 9.50484,0 4.24997,0 0,4.01769 0,8.99547 0,13.97326 4.24997,17.99108 9.50484,18 13.26178,18 16.4205,16.16111 18,13.36638 l -3.26405,-1.71671 c -1.08632,1.78911 -2.84751,2.91704 -5.23097,2.91704 -3.21131,0 -5.724,-2.52297 -5.724,-5.56671 0,-3.04374 2.51269,-5.56671 5.724,-5.56671 2.38346,0 4.14465,1.1278 5.23097,2.91704 z"
+     id="path1"
+     style="stroke-width:0.0136805" />
+</svg>

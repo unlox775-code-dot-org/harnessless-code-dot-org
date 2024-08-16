@@ -1,0 +1,270 @@
+@import 'color.scss';
+@import 'font';
+
+$arrow-size: 1.5rem;
+
+#pageheader-wrapper {
+  z-index: 99;
+}
+
+#hamburger {
+  display: inline-block;
+  position: relative;
+
+  &.hide-always {
+    display: none;
+  }
+
+  &.show-mobile {
+    display: none;
+  }
+
+  &.hide-mobile {
+    display: block;
+  }
+
+  &.show-always {
+    display: block;
+  }
+
+  .hide-always {
+    display: none;
+  }
+
+  .show-mobile {
+    display: none;
+  }
+
+  .hide-mobile {
+    display: block;
+  }
+
+  .show-always {
+    display: block;
+  }
+
+  &.show-small-desktop,
+  .show-small-desktop {
+    display: none;
+  }
+
+  #hamburger-icon {
+    cursor: pointer;
+    height: 20px;
+    vertical-align: middle;
+    text-decoration: none;
+  }
+
+  #hamburger-contents {
+    font-size: 1rem;
+    list-style: none;
+    margin: 0;
+    width: 290px;
+    position: absolute;
+    top: 64px;
+    inset-inline-end: 0;
+    background-color: $light_primary_500;
+    max-height: 100vh;
+    overflow-y: auto;
+    border-radius: 4px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, .2);
+    // We want the z-index to be greater than the teacher panel, which is currently 1021.
+    // Teacher panel z-index is defined in teacher-panel.scss
+    z-index: 1022;
+
+    .item {
+      color: $white;
+      line-height: 1.5;
+      text-indent: 0;
+      list-style-type: none;
+      margin-block: 1rem;
+      margin-inline: 1rem;
+      display: flex;
+      justify-content: space-between;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+      &::before {
+        content: none;
+      }
+      a {
+        @include main-font-regular;
+        color: $white;
+        text-decoration: none;
+        html[dir=rtl], .rtl & {
+          float:right;
+        }
+      }
+    }
+    &.hide-responsive-menu {
+      display: none;
+    }
+
+    .hide-about {
+      display: none;
+    }
+    .hide-educate {
+      display: none;
+    }
+
+    .hamburger-expandable-item {
+      cursor: pointer;
+      .text {
+        float: left;
+        max-width: 210px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        html[dir=rtl], .rtl & {
+          float: right;
+        }
+      }
+      .arrow-down,
+      .arrow-up {
+        font-size: $arrow-size;
+        float: right;
+        margin-block-start: -4px;
+
+        html[dir=rtl], .rtl & {
+          float: left;
+        }
+      }
+      .arrow-up {
+        display: none;
+      }
+      i {
+        width: unset;
+      }
+    }
+
+    .hamburger-expandable-items {
+      margin-left: 20px;
+      display: none;
+      .item {
+        max-width: 220px;
+        margin-top: 0px;
+      }
+    }
+
+    .divider {
+      height: 1px;
+      background: $light_primary_700;
+      margin: 0.75rem 0;
+
+      @media (min-width: 1269px) {
+        &.hide-large-desktop {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1268px) {
+    &.show-small-desktop,
+    .show-small-desktop {
+      display: block;
+    }
+  }
+
+  @media(max-width: 1023px) {
+    &.show-mobile,
+    .show-mobile {
+      display: block;
+    }
+    &.hide-mobile,
+    .hide-mobile {
+      display: none;
+    }
+    #hamburger {
+      padding-left: 0;
+    }
+  }
+}
+
+#hamburger {
+  &:not(.user-is-tabbing) {
+    outline: none;
+  }
+  #hamburger-icon {
+    padding: 10px 28px 16px 0;
+    float: right;
+    margin-top: 7px;
+    margin-inline-start: 3px;
+    display: inline-block;
+
+    %extend_burger {
+      cursor: pointer;
+      height: 3px;
+      width: 25px;
+      border-radius: 2px;
+      background: $white;
+      position: absolute;
+      display: block;
+      content: '';
+      margin-top: 2px;
+      margin-bottom: 2px;
+    }
+    span {
+      @extend %extend_burger;
+      transition: all 500ms ease-in-out;
+      html[dir=rtl] & {
+        margin-right: -25px;
+        &::before {
+          margin-right: 0;
+        }
+        &::after {
+          margin-right: 0;
+        }
+      }
+      &::before {
+        @extend %extend_burger;
+        transition: all 500ms ease-in-out;
+        top: -10px;
+      }
+      &::after {
+        @extend %extend_burger;
+        transition: all 500ms ease-in-out;
+        bottom: -10px;
+      }
+    }
+    &.active span {
+      background-color: transparent;
+      &::before {
+        top: -2px;
+        transform: rotate(45deg);
+      }
+      &::after {
+        top: -2px;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+#hamburger-sign-up-buttons {
+  .button-wrapper {
+    box-sizing: border-box;
+    background-color: $light_primary_500;
+    text-align: center;
+    padding: 1rem 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .header_button {
+      margin: unset;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  /* Hide the Sign in and Create account buttons
+  in the hamburger on large screens */
+  @media (min-width: 426px) {
+    display: none;
+  }
+}

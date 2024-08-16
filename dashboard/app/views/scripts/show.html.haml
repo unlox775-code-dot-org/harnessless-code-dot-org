@@ -1,0 +1,66 @@
+- @page_title = @script.localized_title
+
+%link{href: asset_path('css/scripts.css'), rel: 'stylesheet', type: 'text/css'}
+
+-# This variable will get any data we need to pass along to scripts/show.js
+- scriptOverviewData = {scriptData: @script_data, plcBreadcrumb: @plc_breadcrumb}
+- parental_permission_banner_data = current_user && parental_permission_banner_data(current_user, request)
+
+- content_for(:head) do
+  %script{
+  src: webpack_asset_path('js/scripts/show.js'),
+          data: {scriptoverview: scriptOverviewData.to_json, parental_permission_banner: parental_permission_banner_data.to_json}}
+
+- if RaceInterstitialHelper.show?(current_user) || @force_race_interstitial
+  = render partial: 'layouts/race_interstitial'
+
+= render partial: 'shared/check_admin'
+= render partial: 'shared/emulate_print_media'
+
+- if @current_user.try(:unit_hidden?, @script)
+  = render partial: 'hidden_script'
+- else
+  #landingpage
+    #notification
+    -# This div ends up being owned by UnitOverviewHeader in react
+    #lesson-heading-extras
+      - if @script.banner_image
+        %p
+          - path = script_next_path(@script)
+          - path += "?section_id=#{params[:section_id]}" if params[:section_id]
+          = link_to image_tag(@script.banner_image), path, class: 'uitest-script-next-banner'
+
+    #stats
+      .user-stats-block
+
+    %div{style: 'clear: both;'}
+    %br/
+    %br/
+    - if @current_user.try(:teacher?)
+      - if @script.csf_international?
+        %a{href: CDO.code_org_url('/curriculum/docs/k-5/overview')}
+          = t('home.all_courses')
+        %br/
+        %br/
+
+  - if current_user.try(:levelbuilder?)
+    -# Show all the levels, their names, and instructions in the extra links box.
+    = render layout: 'shared/extra_links' do
+      %strong= @script.name
+      %ul
+        - if Rails.application.config.levelbuilder_mode
+          %li= link_to "Edit", edit_script_path(@script)
+        - else
+          - lb_path = "https://levelbuilder-studio.code.org#{script_path(@script)}"
+          %li= link_to "View on levelbuilder", lb_path
+        %li= link_to "All Instructions", instructions_script_path(@script)
+      - unless @script.unit_groups.empty?
+        = "This script is in #{@script.unit_groups.length} course#{'s' unless @script.unit_groups.length == 1}:"
+        %ul
+          - @script.unit_groups.each do |course|
+            %li= link_to course_path(course)
+      - lesson_plans = @script.is_migrated && @script.use_legacy_lesson_plans && @script.lessons.select(&:has_lesson_plan).map {|lesson| {name: lesson.name, url: lesson.get_uncached_show_path}}
+      -if lesson_plans && lesson_plans.count > 0
+        ="There are #{lesson_plans.count} unlaunched code studio lesson plans in this unit:"
+        - lesson_plans.each do |lesson_plan|
+          %li= link_to lesson_plan[:name], lesson_plan[:url]

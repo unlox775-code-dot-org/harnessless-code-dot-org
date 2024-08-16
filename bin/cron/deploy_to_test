@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+require_relative 'only_one'
+abort 'Script already running' unless only_one_running?(__FILE__)
+
+require_relative '../../deployment'
+require 'cdo/chat_client'
+require 'cdo/developers_topic'
+require 'cdo/github'
+require 'cdo/infra_test_topic'
+
+TOPIC_DTT_IN_PROGRESS = 'no (robo-DTT in progress)'.freeze
+TOPIC_DTT_FAILED = 'no (robo-DTT failed)'.freeze
+ALWAYS_DTT = ARGV[0] && ARGV[0] == 'always_dtt'
+
+def main
+  if !ALWAYS_DTT && !DevelopersTopic.dtt?
+    return
+  end
+  return unless GitHub.behind?(base: 'staging', compare: 'test')
+
+  DevelopersTopic.set_dtt TOPIC_DTT_IN_PROGRESS
+
+  # TODO(asher): Add a reviewer (namely the next DOTD), add appropriate tags
+  # (particularly deploy).
+  pr_number = GitHub.create_and_merge_pull_request(
+    base: 'test',
+    head: 'staging',
+    title: 'DTT (Staging > Test) [robo-dtt]'
+  )
+  if pr_number.nil?
+    raise Exception.new('GitHub.create_and_merge_pull_request failed.')
+  end
+
+  ChatClient.message(
+    'infra-test',
+    "robo-DTT created and merged <a href=\"#{GitHub.url(pr_number)}\">PR#{pr_number}</a>",
+    color: 'green'
+  )
+rescue Exception => exception
+  ChatClient.message(
+    'infra-test',
+    "EXCEPTION: #{exception.message}\n```\n#{exception.class}\n#{exception.backtrace}\n```",
+    color: 'red'
+  )
+  DevelopersTopic.set_dtt TOPIC_DTT_FAILED
+end
+
+main
