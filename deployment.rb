@@ -8,7 +8,6 @@ require 'bundler/setup' if File.exist?(ENV['BUNDLE_GEMFILE'])
 require 'cdo/git_utils'
 require 'uri'
 require 'cdo'
-require 'cdo/aws/config'
 
 ####################################################################################################
 ##
@@ -62,10 +61,6 @@ end
 
 def dashboard_legacy_dir(*dirs)
   deploy_dir('dashboard', 'legacy', *dirs)
-end
-
-def pegasus_dir(*paths)
-  deploy_dir('pegasus', *paths)
 end
 
 def shared_dir(*dirs)

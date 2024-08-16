@@ -1,7 +1,6 @@
 require 'sinatra/base'
 require 'erb'
 require 'sass/plugin/rack'
-require 'cdo/pegasus/graphics'
 require 'dynamic_config/dcdo'
 
 class SharedResources < Sinatra::Base
@@ -11,17 +10,12 @@ class SharedResources < Sinatra::Base
   def self.set_max_age(type, default)
     default = 60 if rack_env? :staging
     default = 0 if rack_env? :development
-    set "#{type}_max_age", proc {DCDO.get("pegasus_#{type}_max_age", default)}
+    set "#{type}_max_age", default
   end
 
   ONE_HOUR = 3600
 
   configure do
-    # Note 1: pegasus/router.rb has additional configuration for Sass::Plugin
-    # Note 2: the generated css files written to /pegasus/cache/css are served
-    #         from the url path /shared/css (see route below)
-    Sass::Plugin.options[:cache_location] = pegasus_dir('cache', '.sass-cache')
-    Sass::Plugin.add_template_location(shared_dir('css'), pegasus_dir('cache', 'css'))
 
     set :image_extnames, ['.png', '.jpeg', '.jpg', '.gif']
     set :javascript_extnames, ['.js']
@@ -55,10 +49,6 @@ class SharedResources < Sinatra::Base
   # CSS
   get "/shared/css/*" do |uri|
     path = shared_dir('css', uri)
-    unless File.file?(path)
-      path = pegasus_dir('cache', 'css', uri)
-      pass unless File.file?(path)
-    end
 
     content_type :css
     cache :static

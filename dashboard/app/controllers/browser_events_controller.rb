@@ -1,4 +1,3 @@
-require 'cdo/aws/metrics'
 
 # A controller for reporting browser logs and metrics to Cloudwatch
 class BrowserEventsController < ApplicationController

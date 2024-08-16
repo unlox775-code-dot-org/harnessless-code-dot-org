@@ -1,5 +1,4 @@
 require 'active_support/core_ext/numeric/time'
-require 'cdo/aws/s3'
 require 'cdo/web_purify'
 require 'cdo/rack/request'
 require 'sinatra/base'

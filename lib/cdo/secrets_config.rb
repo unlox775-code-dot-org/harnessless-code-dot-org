@@ -1,7 +1,5 @@
-require 'cdo/aws/ec2'
 require 'cdo/config'
 require 'cdo/lazy'
-require 'aws-sdk-ec2'
 require 'net/http'
 
 module Cdo

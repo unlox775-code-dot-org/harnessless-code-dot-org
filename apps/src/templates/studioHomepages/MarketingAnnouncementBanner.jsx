@@ -3,7 +3,7 @@ import React, {useState, useEffect, useRef, useCallback} from 'react';
 
 import Button from '@cdo/apps/legacySharedComponents/Button';
 import firehoseClient from '@cdo/apps/lib/util/firehose';
-import {pegasus} from '@cdo/apps/lib/util/urlHelpers';
+import {marketing} from '@cdo/apps/lib/util/urlHelpers';
 import {tryGetLocalStorage, trySetLocalStorage} from '@cdo/apps/utils';
 
 import color from '../../util/color';
@@ -112,7 +112,7 @@ const MarketingAnnouncementBanner = ({announcement, marginBottom}) => {
       {/* ID is used for easier targeting in Google Optimize */}
       <div id="special-announcement-action-block" ref={bannerRef}>
         <TwoColumnActionBlock
-          imageUrl={pegasus(announcement.image)}
+          imageUrl={marketing(announcement.image)}
           subHeading={announcement.title}
           description={announcement.body}
           buttons={[button]}

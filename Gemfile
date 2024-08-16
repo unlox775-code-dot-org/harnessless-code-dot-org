@@ -119,17 +119,10 @@ group :development, :test do
   gem 'spring', '~> 3.1.1'
   gem 'spring-commands-testunit'
   gem 'webdrivers', '~> 5.2'
-
-  # For pegasus PDF generation / merging testing.
-  gem 'parallel_tests'
-  gem 'pdf-reader', require: false
 end
 
 # Needed for unit testing, and also for /rails/mailers email previews.
 gem 'factory_bot_rails', '~> 6.2', group: [:development, :staging, :test, :adhoc]
-
-# For pegasus PDF generation.
-gem 'open_uri_redirections', require: false
 
 # Optimizes copy-on-write memory usage with GC before web-application fork.
 gem 'nakayoshi_fork'

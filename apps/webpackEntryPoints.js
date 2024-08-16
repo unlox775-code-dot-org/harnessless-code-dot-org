@@ -187,47 +187,6 @@ const INTERNAL_ENTRIES = {
 };
 
 // prettier-ignore
-const PEGASUS_ENTRIES = {
-  // code.org
-  'code.org/public/dance': './src/sites/code.org/pages/public/dance.js',
-  'code.org/public/teacher-dashboard/index': './src/sites/code.org/pages/public/teacher-dashboard/index.js',
-  'code.org/public/yourschool': './src/sites/code.org/pages/public/yourschool.js',
-  'code.org/public/yourschool/thankyou': './src/sites/code.org/pages/public/yourschool/thankyou.js',
-  'code.org/views/admins_email_signup_form': './src/sites/code.org/pages/views/admins_email_signup_form.js',
-  'code.org/views/share_privacy': './src/sites/code.org/pages/views/share_privacy.js',
-  'code.org/views/theme_common_head_after': './src/sites/code.org/pages/views/theme_common_head_after.js',
-  'code.org/views/theme_google_analytics': './src/sites/code.org/pages/views/theme_google_analytics.js',
-  'code.org/views/workshop_search': './src/sites/code.org/pages/views/workshop_search.js',
-  'code.org/views/amazon_future_engineer': './src/sites/code.org/pages/views/amazon_future_engineer.js',
-  'code.org/views/amazon_future_engineer_eligibility': './src/sites/code.org/pages/views/amazon_future_engineer_eligibility.js',
-  'code.org/views/job_board': './src/sites/code.org/pages/views/job_board.js',
-  'code.org/views/analytics_event_log_helper': './src/sites/code.org/pages/views/analytics_event_log_helper.js',
-  'code.org/views/swiper': './src/sites/code.org/pages/views/swiper.js',
-  'code.org/views/swiper_page_csd': './src/sites/code.org/pages/views/swiper_page_csd.js',
-  'code.org/views/swiper_page_self_paced_pl': './src/sites/code.org/pages/views/swiper_page_self_paced_pl.js',
-  'code.org/views/swiper_page_ai': './src/sites/code.org/pages/views/swiper_page_ai.js',
-  'code.org/views/swiper_page_applab': './src/sites/code.org/pages/views/swiper_page_applab.js',
-  'code.org/views/swiper_page_videos': './src/sites/code.org/pages/views/swiper_page_videos.js',
-  'code.org/views/swiper_page_minecraft': './src/sites/code.org/pages/views/swiper_page_minecraft.js',
-  'code.org/views/swiper_page_music_lab': './src/sites/code.org/pages/views/swiper_page_music_lab.js',
-  'code.org/views/swiper_page_promote': './src/sites/code.org/pages/views/swiper_page_promote.js',
-  'code.org/views/tabs_section': './src/sites/code.org/pages/views/tabs_section.js',
-  'code.org/views/classy_embed_form': './src/sites/code.org/pages/views/classy_embed_form.js',
-  'code.org/public/poetry': './src/sites/code.org/pages/public/poetry.js',
-
-  // hourofcode.com
-  'hourofcode.com/public/events/index': './src/sites/hourofcode.com/pages/public/events/index.js',
-  'hourofcode.com/views/theme_common_head_after': './src/sites/hourofcode.com/pages/views/theme_common_head_after.js',
-  'hourofcode.com/views/hoc_events_map': './src/sites/hourofcode.com/pages/views/hoc_events_map.js',
-  'hourofcode.com/views/theme_google_analytics': './src/sites/hourofcode.com/pages/views/theme_google_analytics.js',
-  'hourofcode.com/views/swiper_page_ai': './src/sites/hourofcode.com/pages/views/swiper_page_ai.js',
-  'hourofcode.com/views/swiper_page_beyond': './src/sites/hourofcode.com/pages/views/swiper_page_beyond.js',
-
-  // shared between code.org and hourofcode.com
-  'tutorialExplorer': './src/tutorialExplorer/tutorialExplorer.js',
-};
-
-// prettier-ignore
 const PROFESSIONAL_DEVELOPMENT_ENTRIES = {
   'pd/_jotform_loader': './src/sites/studio/pages/pd/_jotform_loader.js',
   'pd/_jotform_embed': './src/sites/studio/pages/pd/_jotform_embed.js',
@@ -261,7 +220,7 @@ const PROFESSIONAL_DEVELOPMENT_ENTRIES = {
   'plc/user_course_enrollments/index': './src/sites/studio/pages/plc/user_course_enrollments/index.js',
 };
 
-// Entries which are shared between dashboard and pegasus, which are included
+// Entries which are included
 // by haml partials in the shared/haml/ directory.
 const SHARED_ENTRIES = {
   cookieBanner: './src/cookieBanner/cookieBanner.js',
@@ -320,7 +279,6 @@ module.exports = {
   appsEntriesFor,
   CODE_STUDIO_ENTRIES,
   INTERNAL_ENTRIES,
-  PEGASUS_ENTRIES,
   PROFESSIONAL_DEVELOPMENT_ENTRIES,
   SHARED_ENTRIES,
   OTHER_ENTRIES,

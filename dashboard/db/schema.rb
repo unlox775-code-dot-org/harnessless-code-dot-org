@@ -1391,20 +1391,6 @@ ActiveRecord::Schema.define(version: 2024_08_07_174943) do
     t.index ["form_id"], name: "index_pd_survey_questions_on_form_id", unique: true
   end
 
-  create_table "pd_teacher_applications", id: :integer, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.string "primary_email", null: false
-    t.string "secondary_email", null: false
-    t.text "application", null: false
-    t.string "regional_partner_override"
-    t.integer "program_registration_id", comment: "Id in the Pegasus forms table for the associated registration (kind: PdProgramRegistration), populated when that form is processed."
-    t.index ["primary_email"], name: "index_pd_teacher_applications_on_primary_email"
-    t.index ["secondary_email"], name: "index_pd_teacher_applications_on_secondary_email"
-    t.index ["user_id"], name: "index_pd_teacher_applications_on_user_id", unique: true
-  end
-
   create_table "pd_teachercon1819_registrations", id: :integer, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
     t.integer "pd_application_id"
     t.text "form_data"

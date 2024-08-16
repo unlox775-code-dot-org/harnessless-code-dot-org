@@ -1,5 +1,4 @@
 require 'raindrops'
-require 'cdo/aws/metrics'
 require 'honeybadger/ruby'
 require 'concurrent/timer_task'
 require 'active_support/core_ext/module/attribute_accessors'

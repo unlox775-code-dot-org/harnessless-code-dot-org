@@ -1,4 +1,3 @@
-require 'cdo/aws/metrics'
 require 'cdo/honeybadger'
 
 module ActiveJobMetrics

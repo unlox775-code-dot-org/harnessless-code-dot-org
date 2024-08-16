@@ -1,5 +1,3 @@
-require 'aws-sdk-s3'
-require 'cdo/aws/s3'
 require 'cdo/share_filtering'
 require 'cdo/firehose'
 

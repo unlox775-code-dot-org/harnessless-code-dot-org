@@ -43,7 +43,7 @@ module Dashboard
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins CDO.pegasus_site_host
+        origins CDO.marketing_site_host
         resource '/dashboardapi/*', headers: :any, methods: [:get]
       end
     end
@@ -84,10 +84,6 @@ module Dashboard
     config.middleware.insert_after SharedResources, NetSimApi
     config.middleware.insert_after NetSimApi, AnimationLibraryApi
     config.middleware.insert_after AnimationLibraryApi, SoundLibraryApi
-    if CDO.dashboard_enable_pegasus && !ENV['SKIP_DASHBOARD_ENABLE_PEGASUS']
-      require 'pegasus_sites'
-      config.middleware.insert_after VarnishEnvironment, PegasusSites
-    end
 
     require 'cdo/rack/upgrade_insecure_requests'
     config.middleware.use ::Rack::UpgradeInsecureRequests

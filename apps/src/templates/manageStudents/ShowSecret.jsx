@@ -6,7 +6,7 @@ import ReactTooltip from 'react-tooltip';
 
 import Button from '@cdo/apps/legacySharedComponents/Button';
 import firehoseClient from '@cdo/apps/lib/util/firehose';
-import {pegasus} from '@cdo/apps/lib/util/urlHelpers';
+import {marketing} from '@cdo/apps/lib/util/urlHelpers';
 import {SectionLoginType} from '@cdo/generated-scripts/sharedConstants';
 import i18n from '@cdo/locale';
 
@@ -150,7 +150,7 @@ class ShowSecret extends Component {
               // TODO: A11y279 (https://codedotorg.atlassian.net/browse/A11Y-279)
               // Verify or update this alt-text as necessary
               <img
-                src={pegasus('/images/' + this.props.secretPicture)}
+                src={marketing('/images/' + this.props.secretPicture)}
                 style={styles.image}
                 alt=""
               />
