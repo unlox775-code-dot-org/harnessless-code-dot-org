@@ -1129,63 +1129,6 @@ columns:
     comment:
   - *21
   - *22
-  census_summaries:
-  - *5
-  - !ruby/object:ActiveRecord::ConnectionAdapters::MySQL::Column
-    name: school_id
-    sql_type_metadata: &109 !ruby/object:ActiveRecord::ConnectionAdapters::MySQL::TypeMetadata
-      delegate_dc_obj: !ruby/object:ActiveRecord::ConnectionAdapters::SqlTypeMetadata
-        sql_type: varchar(12)
-        type: :string
-        limit: 12
-        precision:
-        scale:
-      extra: ''
-    'null': false
-    default:
-    default_function:
-    collation: utf8mb3_unicode_ci
-    comment:
-  - !ruby/object:ActiveRecord::ConnectionAdapters::MySQL::Column
-    name: school_year
-    sql_type_metadata: !ruby/object:ActiveRecord::ConnectionAdapters::MySQL::TypeMetadata
-      delegate_dc_obj: !ruby/object:ActiveRecord::ConnectionAdapters::SqlTypeMetadata
-        sql_type: smallint
-        type: :integer
-        limit: 2
-        precision:
-        scale:
-      extra: ''
-    'null': false
-    default:
-    default_function:
-    collation:
-    comment:
-  - !ruby/object:ActiveRecord::ConnectionAdapters::MySQL::Column
-    name: teaches_cs
-    sql_type_metadata: &111 !ruby/object:ActiveRecord::ConnectionAdapters::MySQL::TypeMetadata
-      delegate_dc_obj: !ruby/object:ActiveRecord::ConnectionAdapters::SqlTypeMetadata
-        sql_type: varchar(2)
-        type: :string
-        limit: 2
-        precision:
-        scale:
-      extra: ''
-    'null': true
-    default:
-    default_function:
-    collation: utf8mb3_unicode_ci
-    comment:
-  - !ruby/object:ActiveRecord::ConnectionAdapters::MySQL::Column
-    name: audit_data
-    sql_type_metadata: *9
-    'null': true
-    default:
-    default_function:
-    collation: utf8mb3_unicode_ci
-    comment:
-  - *21
-  - *22
   channel_tokens:
   - *5
   - *32
@@ -7700,7 +7643,6 @@ primary_keys:
   census_submission_form_maps: id
   census_submissions: id
   census_submissions_school_infos:
-  census_summaries: id
   channel_tokens: id
   code_review_comments: id
   code_review_group_members:
@@ -7908,7 +7850,6 @@ data_sources:
   census_submission_form_maps: true
   census_submissions: true
   census_submissions_school_infos: true
-  census_summaries: true
   channel_tokens: true
   code_review_comments: true
   code_review_group_members: true
@@ -8554,21 +8495,6 @@ indexes:
     columns:
     - school_info_id
     - census_submission_id
-    lengths: {}
-    orders: {}
-    opclasses: {}
-    where:
-    type:
-    using: :btree
-    comment:
-  census_summaries:
-  - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
-    table: census_summaries
-    name: index_census_summaries_on_school_id_and_school_year
-    unique: true
-    columns:
-    - school_id
-    - school_year
     lengths: {}
     orders: {}
     opclasses: {}

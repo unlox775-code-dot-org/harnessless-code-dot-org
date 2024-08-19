@@ -11,7 +11,7 @@ require_relative 'only_one'
 abort 'Script already running' unless only_one_running?(__FILE__)
 
 require_relative '../../dashboard/config/environment'
-require 'honeybadger/ruby'
+
 
 TIME_NOW = DateTime.now.strftime('%F %T').freeze
 
@@ -173,7 +173,7 @@ def main
       SQL
     end
   rescue => exception
-    Honeybadger.notify(
+    Harness.error_notify(
       exception,
       error_message: "Error when writing contained_levels"
     )
@@ -196,7 +196,7 @@ def main
       SQL
     end
   rescue => exception
-    Honeybadger.notify(
+    Harness.error_notify(
       exception,
       error_message: "Error when writing contained_level_answers"
     )
@@ -218,7 +218,7 @@ def main
       SQL
     end
   rescue => exception
-    Honeybadger.notify(
+    Harness.error_notify(
       exception,
       error_message: "Error when writing level_sources_multi_type"
     )
@@ -314,7 +314,7 @@ def insert_pd_applications_status_logs_rows(rows)
   SQL
 rescue => exception
   puts exception
-  Honeybadger.notify(
+  Harness.error_notify(
     exception,
     error_message: "Error when writing pd_applications_status_logs"
   )

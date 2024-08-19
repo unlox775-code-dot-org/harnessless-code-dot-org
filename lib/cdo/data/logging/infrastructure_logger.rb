@@ -31,7 +31,7 @@ module Infrastructure
       begin
         flush!
       rescue => exception
-        Honeybadger.notify(
+        Harness.error_notify(
           exception,
           error_message: "Failed to log rake task information in cloudwatch",
           )

@@ -1,5 +1,5 @@
 # Utility methods for generating certificate images.
-require 'honeybadger/ruby'
+
 require 'rmagick'
 # needed for force_8859_to_utf8
 
@@ -91,7 +91,7 @@ class CertificateImage
       text_overlay.destroy!
     rescue Magick::ImageMagickError => exception
       # We want to know what kinds of text we are failing to render.
-      Honeybadger.notify(
+      Harness.error_notify(
         exception,
         context: {
           text: text,

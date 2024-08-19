@@ -364,7 +364,7 @@ class ApplicationController < ActionController::Base
 
     redirect_to lockout_path
   rescue StandardError => exception
-    Honeybadger.notify(
+    Harness.error_notify(
       exception,
       error_message: 'Failed to apply the Child Account Policy to the user',
       context: {

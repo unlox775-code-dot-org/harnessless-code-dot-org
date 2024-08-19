@@ -6,8 +6,6 @@ require 'cdo/rake_utils'
 require 'cdo/git_utils'
 require 'cdo/lighthouse'
 require 'parallel'
-require 'aws-sdk-s3'
-require 'cdo/mysql_console_helper'
 require lib_dir 'cdo/data/logging/rake_task_event_logger'
 include TimedTaskWithLogging
 

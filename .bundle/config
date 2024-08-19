@@ -1,0 +1,3 @@
+---
+BUNDLE_WITHOUT: "production:adhoc:staging:test:levelbuilder:integration"
+BUNDLE_JOBS: "8"

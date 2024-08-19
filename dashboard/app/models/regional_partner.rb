@@ -220,8 +220,8 @@ class RegionalPartner < ApplicationRecord
             end
           end
         rescue StandardError => exception
-          # Log geocoding errors to honeybadger but don't fail
-          Honeybadger.notify(exception,
+          # Log geocoding errors but don't fail
+          Harness.error_notify(exception,
             error_message: 'Error geocoding regional partner workshop zip_code',
             context: {
               zip_code: zip_code

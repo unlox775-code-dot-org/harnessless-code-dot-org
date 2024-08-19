@@ -1,4 +1,4 @@
-require 'honeybadger/ruby'
+
 
 class CdoDonor
   # Returns a random donor's twitter handle.
@@ -46,7 +46,7 @@ class CdoDonor
   end
 
   def self.report_failure(donor, weight)
-    Honeybadger.notify(
+    Harness.error_notify(
       error_class: 'Failed to pull a random donor twitter handle',
       error_message: donor ? "Donor returned nil for weight #{weight}" : "Twitter handle was nil for donor #{donor}"
     )

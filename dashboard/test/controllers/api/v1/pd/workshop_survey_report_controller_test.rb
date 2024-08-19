@@ -149,7 +149,7 @@ module Api::V1::Pd
 
       WorkshopSurveyReportController.any_instance.expects(:create_csf_survey_report).never
       WorkshopSurveyReportController.any_instance.expects(:local_workshop_daily_survey_report).never
-      Honeybadger.expects(:notify)
+      Harness.expects(:error_notify)
 
       sign_in @admin
       get :generic_survey_report, params: {workshop_id: csf_101_ws.id}

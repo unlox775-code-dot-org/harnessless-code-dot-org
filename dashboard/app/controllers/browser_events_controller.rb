@@ -36,7 +36,7 @@ class BrowserEventsController < ApplicationController
 
     render status: :ok, json: {}
   rescue => exception
-    Honeybadger.notify(
+    Harness.error_notify(
       exception,
       error_message: "Error publishing logs to Cloudwatch"
     )
@@ -54,7 +54,7 @@ class BrowserEventsController < ApplicationController
 
     render status: :ok, json: {}
   rescue => exception
-    Honeybadger.notify(
+    Harness.error_notify(
       exception,
       error_message: "Error publishing metrics to Cloudwatch"
     )

@@ -464,7 +464,6 @@ class User < ApplicationRecord
       find_by_email_or_hashed_email(identifier)
   rescue ActiveModel::RangeError
     # Given too large of a user id this can produce a range error
-    # @see https://app.honeybadger.io/projects/3240/faults/44740400
     nil
   end
 

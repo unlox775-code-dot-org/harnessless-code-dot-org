@@ -49,27 +49,6 @@ namespace :seed do
     Game.setup
   end
 
-  timed_task_with_logging donors: :environment do
-    Donor.setup
-  end
-
-  timed_task_with_logging donor_schools: :environment do
-    DonorSchool.setup
-  end
-
-  timed_task_with_logging foorm_libraries: :environment do
-    Foorm::Library.setup(CURRICULUM_CONTENT_DIR)
-  end
-
-  timed_task_with_logging foorm_forms: :environment do
-    Foorm::Form.setup(CURRICULUM_CONTENT_DIR)
-  end
-
-  timed_task_with_logging foorms: :environment do
-    Foorm::Library.setup(CURRICULUM_CONTENT_DIR)
-    Foorm::Form.setup(CURRICULUM_CONTENT_DIR)
-  end
-
   SCRIPTS_GLOB = Dir.glob("#{CURRICULUM_CONTENT_DIR}/config/scripts_json/**/*.script_json").sort.flatten.freeze
   SPECIAL_UI_TEST_SCRIPTS = %w(
     ui-test-script-in-course-2017
@@ -369,11 +348,6 @@ namespace :seed do
     School.seed_all
   end
 
-  # Seeds the data in census_summaries
-  timed_task_with_logging census_summaries: :environment do
-    Census::CensusSummary.seed_all
-  end
-
   timed_task_with_logging sample_data: :environment do
     SampleData.seed
   end
@@ -491,7 +465,7 @@ namespace :seed do
     files_to_import.each {|file_to_import| CsvToSqlTable.new(marketing_dir(file_to_import), db, table_prefix).import}
   end
 
-  FULL_SEED_TASKS = [:check_migrations, :videos, :concepts, :scripts, :courses, :reference_guides, :data_docs, :callouts, :school_districts, :schools, :census_summaries, :secret_words, :secret_pictures, :donors, :donor_schools, :foorms, :import_marketing_data, :datablock_storage].freeze
+  FULL_SEED_TASKS = [:check_migrations, :videos, :concepts, :scripts, :courses, :reference_guides, :data_docs, :callouts, :school_districts, :schools, :secret_words, :secret_pictures, :donors, :donor_schools, :foorms, :import_marketing_data, :datablock_storage].freeze
   UI_TEST_SEED_TASKS = [:check_migrations, :videos, :concepts, :course_offerings_ui_tests, :scripts_ui_tests, :courses_ui_tests, :callouts, :school_districts, :schools, :secret_words, :secret_pictures, :donors, :donor_schools, :import_marketing_data, :datablock_storage].freeze
   DEFAULT_SEED_TASKS = [:adhoc, :test].include?(rack_env) ? UI_TEST_SEED_TASKS : FULL_SEED_TASKS
 

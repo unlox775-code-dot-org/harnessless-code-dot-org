@@ -5,7 +5,6 @@ require_dependency 'queries/script_activity'
 class HomeController < ApplicationController
   include UsersHelper
   include SurveyResultsHelper
-  include TeacherApplicationHelper
   include IncubatorHelper
 
   # Don't require an authenticity token on set_locale because we post to that

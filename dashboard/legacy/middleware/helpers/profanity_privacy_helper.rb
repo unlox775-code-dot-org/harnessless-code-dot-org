@@ -1,5 +1,4 @@
 require 'cdo/share_filtering'
-require_relative './bucket_helper'
 require_relative './source_bucket'
 require 'cdo/firehose'
 

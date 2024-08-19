@@ -1,4 +1,4 @@
-require 'honeybadger/ruby'
+
 require 'cdo/firehose'
 require 'state_abbr'
 
@@ -67,7 +67,7 @@ class Api::V1::AmazonFutureEngineerController < ApplicationController
       )
     end
   rescue Services::AFEEnrollment::Error, Services::CSTAEnrollment::Error => exception
-    Honeybadger.notify exception
+    Harness.error_notify exception
     render json: exception.to_s, status: :bad_request
   end
 

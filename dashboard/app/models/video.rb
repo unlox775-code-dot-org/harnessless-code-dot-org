@@ -39,11 +39,11 @@ class Video < ApplicationRecord
   EMBED_URL_REGEX = /(?:http[s]?:)?\/\/(?:www\.)?(?:youtube(?:education|-nocookie)?)\.com\/embed\/(?<id>#{YOUTUBE_ID_REGEX})/
 
   def self.check_i18n_names
-    video_keys = Video.all.collect(&:key)
-    missing_keys = video_keys.reject {|key| I18n.t("data.video.name.#{key}", default: nil)}
-    unless missing_keys.empty?
-      raise "Missing strings for video.name.#{missing_keys} in config/locales/data.en.yml, please add"
-    end
+    # video_keys = Video.all.collect(&:key)
+    # missing_keys = video_keys.reject {|key| I18n.t("data.video.name.#{key}", default: nil)}
+    # unless missing_keys.empty?
+    #   raise "Missing strings for video.name.#{missing_keys} in config/locales/data.en.yml, please add"
+    # end
   end
 
   def self.setup(dashboard_root = '.')

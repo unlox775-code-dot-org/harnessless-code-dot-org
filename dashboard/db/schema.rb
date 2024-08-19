@@ -267,16 +267,6 @@ ActiveRecord::Schema.define(version: 2024_08_07_174943) do
     t.index ["school_info_id", "census_submission_id"], name: "school_info_id_census_submission", unique: true
   end
 
-  create_table "census_summaries", id: :integer, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
-    t.string "school_id", limit: 12, null: false
-    t.integer "school_year", limit: 2, null: false
-    t.string "teaches_cs", limit: 2
-    t.text "audit_data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["school_id", "school_year"], name: "index_census_summaries_on_school_id_and_school_year", unique: true
-  end
-
   create_table "channel_tokens", id: :integer, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
     t.integer "storage_app_id", null: false
     t.integer "level_id", null: false
@@ -701,6 +691,36 @@ ActiveRecord::Schema.define(version: 2024_08_07_174943) do
     t.string "app"
     t.integer "intro_video_id"
     t.index ["intro_video_id"], name: "index_games_on_intro_video_id"
+  end
+
+  create_table "google_sheets_shared_cdo_donors", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+    t.string "name_s"
+    t.string "url_s"
+    t.string "show_s"
+    t.string "twitter_s"
+    t.string "level_s"
+    t.float "weight_f"
+    t.float "twitter_weight_f"
+  end
+
+  create_table "google_sheets_shared_cdo_languages", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+    t.string "code_s"
+    t.string "unique_language_s"
+    t.string "language_s"
+    t.string "locale_s"
+    t.string "native_name_s"
+    t.string "english_name_s"
+    t.boolean "supported_codeorg_b"
+    t.boolean "supported_hoc_b"
+    t.string "crowdin_code_s"
+    t.string "crowdin_name_s"
+    t.boolean "csf_b"
+    t.boolean "frozen_b"
+    t.boolean "starwars_b"
+    t.boolean "minecraft_adventurer_b"
+    t.boolean "minecraft_designer_b"
+    t.index ["code_s"], name: "code_s", unique: true
+    t.index ["supported_codeorg_b"], name: "google_sheets_shared_cdo_languages_supported_codeorg_b_index"
   end
 
   create_table "hint_view_requests", id: :integer, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
@@ -1389,6 +1409,20 @@ ActiveRecord::Schema.define(version: 2024_08_07_174943) do
     t.datetime "updated_at", null: false
     t.bigint "last_submission_id", comment: "Last successfully processed submission id. Sync will only pull submissions with ids greater than this value."
     t.index ["form_id"], name: "index_pd_survey_questions_on_form_id", unique: true
+  end
+
+  create_table "pd_teacher_applications", id: :integer, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.string "primary_email", null: false
+    t.string "secondary_email", null: false
+    t.text "application", null: false
+    t.string "regional_partner_override"
+    t.integer "program_registration_id", comment: "Id in the Pegasus forms table for the associated registration (kind: PdProgramRegistration), populated when that form is processed."
+    t.index ["primary_email"], name: "index_pd_teacher_applications_on_primary_email"
+    t.index ["secondary_email"], name: "index_pd_teacher_applications_on_secondary_email"
+    t.index ["user_id"], name: "index_pd_teacher_applications_on_user_id", unique: true
   end
 
   create_table "pd_teachercon1819_registrations", id: :integer, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
@@ -2446,7 +2480,6 @@ ActiveRecord::Schema.define(version: 2024_08_07_174943) do
   add_foreign_key "ai_tutor_interaction_feedbacks", "users"
   add_foreign_key "cap_user_events", "users"
   add_foreign_key "census_submission_form_maps", "census_submissions"
-  add_foreign_key "census_summaries", "schools"
   add_foreign_key "hint_view_requests", "users"
   add_foreign_key "learning_goal_ai_evaluations", "learning_goals"
   add_foreign_key "learning_goal_ai_evaluations", "rubric_ai_evaluations"

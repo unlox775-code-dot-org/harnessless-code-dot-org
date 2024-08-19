@@ -40,7 +40,7 @@ module Metrics
           return
         end
       rescue => exception
-        Honeybadger.notify(
+        Harness.error_notify(
           exception,
           error_message: 'Error logging event',
       )
@@ -60,7 +60,7 @@ module Metrics
           return
         end
       rescue => exception
-        Honeybadger.notify(
+        Harness.error_notify(
           exception,
           error_message: 'Error logging session event',
           )

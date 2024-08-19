@@ -471,7 +471,7 @@ class Pd::WorkshopTest < ActiveSupport::TestCase
     # and send_follow_up_after_days() raises exception
     Pd::WorkshopMailer.expects(:teacher_follow_up).returns(mock_mail).times(teacher_count)
 
-    Honeybadger.expects(:notify).once
+    Harness.expects(:error_notify).once
     assert_raises RuntimeError do
       Pd::Workshop.send_follow_up_after_days(30)
     end
@@ -1042,7 +1042,7 @@ class Pd::WorkshopTest < ActiveSupport::TestCase
       )
     ]
     expected_processed_location = '{"latitude":47.610183,"longitude":-122.337401,"city":"Seattle","state":"WA","formatted_address":"1501 4th Ave, Seattle, WA 98101, USA"}'
-    Honeybadger.expects(:notify).never
+    Harness.expects(:error_notify).never
 
     # Normal lookup
     Geocoder.expects(:search).with('1501 4th Ave, Seattle WA').returns(mock_geocoder_result)
@@ -1071,7 +1071,7 @@ class Pd::WorkshopTest < ActiveSupport::TestCase
     assert_equal expected_processed_location, @workshop.processed_location
 
     # Repeated errors are logged to honeybadger
-    Honeybadger.expects(:notify).once
+    Harness.expects(:error_notify).once
     Geocoder.expects(:search).with('1501 4th Ave, Seattle WA').raises(SocketError).twice
     @workshop.location_address = '1501 4th Ave, Seattle WA'
     @workshop.process_location

@@ -307,7 +307,7 @@ class I18nStringUrlTracker
     # if the buffer is too large, trigger an early flush
     if @buffer_size > @buffer_size_max
       message = "The I18n string usage tracker is has reached its memory limit so data will be flushed early. Investigate whether there is an issue or if the limit should be increased."
-      Honeybadger.notify(
+      Harness.error_notify(
         name: 'I18n Usage Tracker buffer reached max memory limits.',
         message: message,
         context: {

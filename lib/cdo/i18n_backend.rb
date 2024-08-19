@@ -1,6 +1,6 @@
 require 'i18n'
 require 'active_support/core_ext/numeric/bytes'
-require 'cdo/honeybadger'
+
 require 'cdo/i18n_string_url_tracker'
 
 module Cdo
@@ -128,7 +128,7 @@ module Cdo
         # that was removed in the source string and we want to be notified so
         # we can update the translation.
         if result.is_a?(String) && Regexp.union(::I18n.config.interpolation_patterns).match?(result)
-          Honeybadger.notify(
+          Harness.error_notify(
             error_class: 'Interpolation Pattern present in translation',
             error_message: "String #{result.inspect} has unused interpolation patterns after translation",
             context: {
