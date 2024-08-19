@@ -81,6 +81,10 @@ This document outlines the strategy for decoupling the Code.org codebase into mo
    - Create the code-dot-org-harness repository, containing all proprietary business logic, third-party integrations, and operational tools.
    - Ensure that the harness can be optionally integrated with the harnessless LMS or run as part of Code.org's infrastructure.
 
+## Remaining Work
+
+This is a rough proof-of-concept, I have disabled linting errors, and set npm build to --force.  In general I know there are a lot of broken references, and should this (unlikely) be moved forward to make this a real thing, simply turning the warnings back on and fixing them would make an easy checklist of things to do.
+
 ## Conclusion
 
 This modular approach allows Code.org to maintain a clean separation between its core application, curriculum, localization, marketing efforts, and proprietary operational harness. By decoupling these components, external entities can more easily deploy and manage the LMS while Code.org retains control over its business-specific functionalities.

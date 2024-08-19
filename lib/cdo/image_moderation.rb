@@ -1,6 +1,6 @@
 require 'cdo/azure_content_moderator'
 
-require 'cdo/firehose'
+
 
 module ImageModeration
   # Returns a content rating from an external service.

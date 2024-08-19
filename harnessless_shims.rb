@@ -34,6 +34,16 @@ module Harness
   end
 end
 
+require 'singleton'
+
+class FirehoseClient
+  include Singleton
+
+  def put_record(record)
+    # Stub
+  end
+end
+
 class BucketHelper
   def self.s3_get_object(key, if_modified_since, version)
     # Stub

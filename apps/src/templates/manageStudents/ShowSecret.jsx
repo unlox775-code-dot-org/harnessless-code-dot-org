@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import ReactTooltip from 'react-tooltip';
 
 import Button from '@cdo/apps/legacySharedComponents/Button';
-import firehoseClient from '@cdo/apps/lib/util/harness';
+import harness from '@cdo/apps/lib/util/harness';
 import {marketing} from '@cdo/apps/lib/util/urlHelpers';
 import {SectionLoginType} from '@cdo/generated-scripts/sharedConstants';
 import i18n from '@cdo/locale';
@@ -36,7 +36,7 @@ class ShowSecret extends Component {
     this.setState({
       isShowing: true,
     });
-    firehoseClient.putRecord(
+    harness.trackAnalytics(
       {
         study: 'teacher-dashboard',
         study_group: 'manage-students',
@@ -56,7 +56,7 @@ class ShowSecret extends Component {
     this.setState({
       isShowing: false,
     });
-    firehoseClient.putRecord(
+    harness.trackAnalytics(
       {
         study: 'teacher-dashboard',
         study_group: 'manage-students',
@@ -90,7 +90,7 @@ class ShowSecret extends Component {
         } else if (this.props.loginType === SectionLoginType.word) {
           this.props.setSecretWords(this.props.id, data.secret_words);
         }
-        firehoseClient.putRecord(
+        harness.trackAnalytics(
           {
             study: 'teacher-dashboard',
             study_group: 'manage-students',

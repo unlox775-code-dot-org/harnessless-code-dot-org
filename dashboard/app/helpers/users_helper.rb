@@ -1,6 +1,6 @@
 require 'cdo/activity_constants'
 require 'cdo/shared_constants'
-require 'cdo/firehose'
+
 
 
 module UsersHelper

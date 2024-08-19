@@ -1,4 +1,4 @@
-require 'cdo/firehose'
+
 
 require 'cdo/mailjet'
 require 'cpa'

@@ -1,4 +1,4 @@
-require 'cdo/firehose'
+
 
 class Api::V1::SchoolsController < ApplicationController
   load_resource :school, only: [:show, :afe_high_needs]

@@ -1,5 +1,5 @@
 
-require 'cdo/firehose'
+
 require 'state_abbr'
 
 #

@@ -1,6 +1,6 @@
 require "csv"
 require "naturally"
-require 'cdo/firehose'
+
 
 EMPTY_XML = '<xml></xml>'.freeze
 

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 
 import Button from '@cdo/apps/legacySharedComponents/Button';
-import firehoseClient from '@cdo/apps/lib/util/harness';
+import harness from '@cdo/apps/lib/util/harness';
 import {marketing} from '@cdo/apps/lib/util/urlHelpers';
 import {tryGetLocalStorage, trySetLocalStorage} from '@cdo/apps/utils';
 
@@ -65,7 +65,7 @@ const MarketingAnnouncementBanner = ({announcement, marginBottom}) => {
   };
 
   const logEvent = eventLabel => {
-    firehoseClient.putRecord(
+    harness.trackAnalytics(
       {
         study: 'teacher_signedin_homepage',
         study_group: 'homepage_banner',

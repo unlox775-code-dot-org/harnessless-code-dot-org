@@ -1,4 +1,4 @@
-require 'cdo/firehose'
+
 
 class Api::V1::UsersController < Api::V1::JSONApiController
   before_action :load_user

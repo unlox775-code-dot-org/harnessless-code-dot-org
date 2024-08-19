@@ -239,9 +239,6 @@ GEM
     aws-sdk-ec2 (1.254.0)
       aws-sdk-core (~> 3, >= 3.119.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-firehose (1.39.0)
-      aws-sdk-core (~> 3, >= 3.119.0)
-      aws-sigv4 (~> 1.1)
     aws-sdk-glue (1.92.0)
       aws-sdk-core (~> 3, >= 3.119.0)
       aws-sigv4 (~> 1.1)
@@ -963,7 +960,6 @@ DEPENDENCIES
   aws-sdk-databasemigrationservice
   aws-sdk-dynamodb
   aws-sdk-ec2
-  aws-sdk-firehose
   aws-sdk-glue
   aws-sdk-rds
   aws-sdk-route53
