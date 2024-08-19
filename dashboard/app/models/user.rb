@@ -215,19 +215,10 @@ class User < ApplicationRecord
   belongs_to :studio_person, optional: true
   has_many :hint_view_requests
 
-  # courses a facilitator is able to teach
-  has_many :courses_as_facilitator,
-    class_name: 'Pd::CourseFacilitator',
-    foreign_key: :facilitator_id,
-    dependent: :destroy
-
   has_many :regional_partner_program_managers,
     foreign_key: :program_manager_id
   has_many :regional_partners,
     through: :regional_partner_program_managers
-
-  has_many :pd_workshops_organized, class_name: 'Pd::Workshop', foreign_key: :organizer_id
-  has_and_belongs_to_many :pd_workshops_facilitated, class_name: 'Pd::Workshop', join_table: 'pd_workshops_facilitators', association_foreign_key: 'pd_workshop_id'
 
   has_many :authentication_options, dependent: :destroy
   accepts_nested_attributes_for :authentication_options
@@ -270,12 +261,6 @@ class User < ApplicationRecord
   has_many :user_school_infos
   after_save :update_and_add_users_school_infos, if: :saved_change_to_school_info_id?
   validate :complete_school_info, if: :school_info_id_changed?, unless: proc {|u| u.purged_at.present?}
-
-  has_many :pd_applications,
-    class_name: 'Pd::Application::ApplicationBase',
-    dependent: :destroy
-
-  has_many :pd_attendances, class_name: 'Pd::Attendance', foreign_key: :teacher_id
 
   has_many :sign_ins
   has_many :user_geos, -> {order(updated_at: :desc)}
@@ -434,27 +419,6 @@ class User < ApplicationRecord
   def hashed_email
     return read_attribute(:hashed_email) unless migrated?
     primary_contact_info.try(:hashed_email) || ''
-  end
-
-  # Email used for the user's enrollments:
-  # Returns the 'alternateEmail' field from the user's latest accepted teacher application if it exists to
-  # help ensure the enrollment emails are delivered. Otherwise, returns the user's email.
-  def email_for_enrollments
-    latest_accepted_app = Pd::Application::TeacherApplication.where(
-      user: self,
-      status: 'accepted'
-    ).order(application_year: :desc).first&.form_data_hash
-    alternate_email = latest_accepted_app ? latest_accepted_app['alternateEmail'] : ''
-    alternate_email.presence || email
-  end
-
-  # assign a course to a facilitator that is qualified to teach it
-  def course_as_facilitator=(course)
-    courses_as_facilitator << courses_as_facilitator.find_or_create_by(facilitator_id: id, course: course)
-  end
-
-  def delete_course_as_facilitator(course)
-    courses_as_facilitator.find_by(course: course).try(:destroy)
   end
 
   # Given a user_id, username, or email, attempts to find the relevant user
@@ -2494,14 +2458,6 @@ class User < ApplicationRecord
 
   def within_united_states?
     user_geos.first&.country == 'United States'
-  end
-
-  def associate_with_potential_pd_enrollments
-    if teacher?
-      Pd::Enrollment.where(email: email, user: nil).each do |enrollment|
-        enrollment.update(user: self)
-      end
-    end
   end
 
   # Disable sharing of advanced projects for students under 13 upon

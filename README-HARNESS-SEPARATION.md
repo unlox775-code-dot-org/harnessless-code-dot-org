@@ -26,7 +26,7 @@ This document outlines the strategy for decoupling the Code.org codebase into mo
      - Basic application services needed for LMS functionality.
    - **Exclusions**:
      - Marketing site references.
-     - Professional development tools and teacher recruitment functions
+     - Professional development tools and teacher recruitment functions such as Workshops, Facilitators and Regional Partners.
      - Lead generation tools: anything Foorm, or Donor related
      - Code.org-specific operational tools (e.g., analytics, error tracking).
      - Census, surveys, and data science tools for internal reporting.
