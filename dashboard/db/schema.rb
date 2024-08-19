@@ -267,6 +267,16 @@ ActiveRecord::Schema.define(version: 2024_08_07_174943) do
     t.index ["school_info_id", "census_submission_id"], name: "school_info_id_census_submission", unique: true
   end
 
+  create_table "census_summaries", id: :integer, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
+    t.string "school_id", limit: 12, null: false
+    t.integer "school_year", limit: 2, null: false
+    t.string "teaches_cs", limit: 2
+    t.text "audit_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["school_id", "school_year"], name: "index_census_summaries_on_school_id_and_school_year", unique: true
+  end
+
   create_table "channel_tokens", id: :integer, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
     t.integer "storage_app_id", null: false
     t.integer "level_id", null: false
@@ -2480,6 +2490,7 @@ ActiveRecord::Schema.define(version: 2024_08_07_174943) do
   add_foreign_key "ai_tutor_interaction_feedbacks", "users"
   add_foreign_key "cap_user_events", "users"
   add_foreign_key "census_submission_form_maps", "census_submissions"
+  add_foreign_key "census_summaries", "schools"
   add_foreign_key "hint_view_requests", "users"
   add_foreign_key "learning_goal_ai_evaluations", "learning_goals"
   add_foreign_key "learning_goal_ai_evaluations", "rubric_ai_evaluations"
