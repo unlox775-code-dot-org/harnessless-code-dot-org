@@ -13,12 +13,19 @@ class SharedResources < Sinatra::Base
     set "#{type}_max_age", default
   end
 
+  def self.load_supported_locales
+    Dir.glob(locale_content_dir('cache', 'i18n', '*.json')).map do |i|
+      File.basename(i, '.json').downcase
+    end.sort
+  end
+
   ONE_HOUR = 3600
 
   configure do
 
     set :image_extnames, ['.png', '.jpeg', '.jpg', '.gif']
     set :javascript_extnames, ['.js']
+    set :locales_supported, load_supported_locales
     set_max_age :image, ONE_HOUR * 10
     set_max_age :image_proxy, ONE_HOUR * 5
     set_max_age :static, ONE_HOUR * 10
@@ -26,12 +33,37 @@ class SharedResources < Sinatra::Base
   end
 
   before do
+    env['cdo.locale'] = cookie_locale || default_locale || CDO.default_locale
   end
 
   after do
   end
 
   helpers do
+    def cookie_locale
+      language_to_locale(request.cookies['language_'])
+    end
+
+    def default_locale
+      'en-US'
+    end
+
+    def language_to_locale(language)
+      case language
+      when 'en'
+        return 'en-US'
+      when 'es'
+        return 'es-ES'
+      when 'fa'
+        return 'fa-IR'
+      else
+        language = language.to_s.downcase
+        return nil unless locale = settings.locales_supported.find {|i| i == language || i.split('-').first == language}
+        parts = locale.split('-')
+        return "#{parts[0].downcase}-#{parts[1].upcase}"
+      end
+    end
+
     def cache_for(seconds, proxy_seconds = nil)
       proxy_seconds ||= seconds / 2
       cache_control(:public, :must_revalidate, max_age: seconds, s_maxage: proxy_seconds)

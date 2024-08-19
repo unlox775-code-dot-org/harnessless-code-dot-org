@@ -142,4 +142,4 @@ use_my_apps: true
 # active_job_queue_adapter: :delayed_job
 
 # Harness configuration
-locale_base_path: /Users/dave/Downloads/2024-07-23_repo_analysis/default-locale-content
+locale_content_dir: /Users/dave/Downloads/2024-07-23_repo_analysis/default-locale-content

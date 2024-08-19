@@ -28,6 +28,21 @@ module Cdo
   end
 end
 
+class String
+  # Returns true if the string ends with the string passed
+  def ends_with?(s)
+    self[-s.length..] == s
+  end
+
+  # Returns true if the string contains any one of the strings passed
+  def include_one_of?(*items)
+    items.flatten.each do |item|
+      return true if include?(item)
+    end
+    false
+  end
+end
+
 module Harness
   def error_notify(e, data = {})
     # Stub

@@ -60,6 +60,10 @@ def dashboard_dir(*dirs)
   deploy_dir('dashboard', *dirs)
 end
 
+def locale_content_dir(*dirs)
+  deploy_dir(CDO.locale_content_dir, *dirs)
+end
+
 def dashboard_legacy_dir(*dirs)
   deploy_dir('dashboard', 'legacy', *dirs)
 end
