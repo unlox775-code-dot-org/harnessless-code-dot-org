@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import color from '@cdo/apps/util/color';
 
-import firehoseClient from '../../../lib/util/firehose';
+import firehoseClient from '../../../lib/util/harness';
 import MultiCheckboxSelector from '../../MultiCheckboxSelector';
 
 import ProgressBoxForLessonNumber from './ProgressBoxForLessonNumber';

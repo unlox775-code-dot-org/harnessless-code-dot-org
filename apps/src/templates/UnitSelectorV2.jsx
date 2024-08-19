@@ -12,7 +12,7 @@ import {
 } from '@cdo/apps/redux/unitSelectionRedux';
 import {loadUnitProgress} from '@cdo/apps/templates/sectionProgress/sectionProgressLoader';
 
-import firehoseClient from '../lib/util/firehose';
+import firehoseClient from '../lib/util/harness';
 
 import styles from './unit-selector-v2.module.scss';
 import skeletonizeContent from '@cdo/apps/componentLibrary/skeletonize-content.module.scss';

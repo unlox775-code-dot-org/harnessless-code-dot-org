@@ -8,7 +8,7 @@ import {PublishedState} from '@cdo/apps/generated/curriculum/sharedCourseConstan
 import Button from '@cdo/apps/legacySharedComponents/Button';
 import {EVENTS, PLATFORMS} from '@cdo/apps/lib/util/AnalyticsConstants';
 import analyticsReporter from '@cdo/apps/lib/util/AnalyticsReporter';
-import firehoseClient from '@cdo/apps/lib/util/firehose';
+import firehoseClient from '@cdo/apps/lib/util/harness';
 import styleConstants from '@cdo/apps/styleConstants';
 import CopyrightInfo from '@cdo/apps/templates/CopyrightInfo';
 import VerifiedResourcesNotification from '@cdo/apps/templates/courseOverview/VerifiedResourcesNotification';

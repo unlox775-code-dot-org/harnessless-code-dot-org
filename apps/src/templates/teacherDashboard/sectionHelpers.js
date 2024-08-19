@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import {navigateToHref} from '@cdo/apps/utils';
 
-import firehoseClient from '../../lib/util/firehose';
+import firehoseClient from '../../lib/util/harness';
 
 import {TEACHER_DASHBOARD_PATHS} from './TeacherDashboardNavigation';
 

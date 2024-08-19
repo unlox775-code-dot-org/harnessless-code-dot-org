@@ -17,7 +17,7 @@ import {getCurrentId} from '../code-studio/initApp/project';
 import consoleApi from '../consoleApi';
 import {TestResults} from '../constants';
 import dom from '../dom';
-import firehoseClient from '../lib/util/firehose';
+import firehoseClient from '../lib/util/harness';
 import logToCloud from '../logToCloud';
 import {getStore} from '../redux';
 import {initializeSubmitHelper, onSubmitComplete} from '../submitHelper';

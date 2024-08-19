@@ -4,7 +4,7 @@ import sinon from 'sinon'; // eslint-disable-line no-restricted-imports
 
 import Button from '@cdo/apps/legacySharedComponents/Button';
 import SchoolInfoInterstitial from '@cdo/apps/lib/ui/SchoolInfoInterstitial';
-import firehoseClient from '@cdo/apps/lib/util/firehose';
+import firehoseClient from '@cdo/apps/lib/util/harness';
 import BaseDialog from '@cdo/apps/templates/BaseDialog';
 import SchoolInfoInputs from '@cdo/apps/templates/SchoolInfoInputs';
 import i18n from '@cdo/locale';

@@ -9,7 +9,7 @@ import analyticsReporter from '@cdo/apps/lib/util/AnalyticsReporter';
 import {teacherDashboardUrl} from '@cdo/apps/templates/teacherDashboard/urlHelpers';
 import i18n from '@cdo/locale';
 
-import firehoseClient from '../../../lib/util/firehose';
+import firehoseClient from '../../../lib/util/harness';
 
 import {CreateStandardsReportDialog} from './CreateStandardsReportDialog';
 import LessonStatusDialog from './LessonStatusDialog';

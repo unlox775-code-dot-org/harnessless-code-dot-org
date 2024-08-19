@@ -12,7 +12,7 @@ import SectionAssessments from '@cdo/apps/templates/sectionAssessments/SectionAs
 import SectionLoginInfo from '@cdo/apps/templates/teacherDashboard/SectionLoginInfo';
 import TextResponses from '@cdo/apps/templates/textResponses/TextResponses';
 
-import firehoseClient from '../../lib/util/firehose';
+import firehoseClient from '../../lib/util/harness';
 import StandardsReport from '../sectionProgress/standards/StandardsReport';
 import SectionProgressSelector from '../sectionProgressV2/SectionProgressSelector';
 

@@ -9,6 +9,23 @@ module Cdo
       # Stub
     end
   end
+
+  class Secrets
+    # Constructor
+    def initialize(n)
+      # Stub
+    end
+
+    def required(n = nil)
+      # Stub
+      print "SECRETS(STUB) required #{n}\n"
+    end
+
+    def get!(n)
+      # Stub
+      print "SECRETS(STUB) get! #{n}\n"
+    end
+  end
 end
 
 module Harness

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 import {EVENTS, PLATFORMS} from '@cdo/apps/lib/util/AnalyticsConstants';
 import analyticsReporter from '@cdo/apps/lib/util/AnalyticsReporter';
-import firehoseClient from '@cdo/apps/lib/util/firehose';
+import firehoseClient from '@cdo/apps/lib/util/harness';
 import SchoolDataInputs from '@cdo/apps/templates/SchoolDataInputs';
 import {
   SELECT_A_SCHOOL,

@@ -6,7 +6,7 @@ import {ParticipantAudience} from '@cdo/apps/generated/curriculum/sharedCourseCo
 import {OAuthSectionTypes} from '@cdo/apps/lib/ui/accounts/constants';
 import {EVENTS, PLATFORMS} from '@cdo/apps/lib/util/AnalyticsConstants';
 import analyticsReporter from '@cdo/apps/lib/util/AnalyticsReporter';
-import firehoseClient from '@cdo/apps/lib/util/firehose';
+import firehoseClient from '@cdo/apps/lib/util/harness';
 import {
   SectionLoginType,
   PlGradeValue,

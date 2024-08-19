@@ -5,7 +5,7 @@ import analyticsReporter from '@cdo/apps/lib/util/AnalyticsReporter';
 import {SET_SCRIPT} from '@cdo/apps/redux/unitSelectionRedux';
 import {trySetLocalStorage, tryGetLocalStorage} from '@cdo/apps/utils';
 
-import firehoseClient from '../../lib/util/firehose';
+import firehoseClient from '../../lib/util/harness';
 import {lessonHasLevels} from '../progress/progressHelpers';
 
 import {ViewType} from './sectionProgressConstants';

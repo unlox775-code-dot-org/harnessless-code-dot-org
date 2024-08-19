@@ -14,7 +14,7 @@ import SortByNameDropdown from '@cdo/apps/templates/SortByNameDropdown';
 import i18n from '@cdo/locale';
 
 import {h3Style} from '../../legacySharedComponents/Headings';
-import firehoseClient from '../../lib/util/firehose';
+import firehoseClient from '../../lib/util/harness';
 
 import LessonSelector from './LessonSelector';
 import ProgressViewHeader from './ProgressViewHeader';

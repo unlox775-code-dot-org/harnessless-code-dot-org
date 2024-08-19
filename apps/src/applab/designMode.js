@@ -16,7 +16,7 @@ import * as assetPrefix from '../assetManagement/assetPrefix';
 import {ImageMode} from '../code-studio/components/AssetManager';
 import project from '../code-studio/initApp/project';
 import {KeyCodes, NOTIFICATION_ALERT_TYPE} from '../constants';
-import firehoseClient from '../lib/util/firehose';
+import firehoseClient from '../lib/util/harness';
 import logToCloud from '../logToCloud';
 import {getStore} from '../redux';
 import {singleton as studioApp} from '../StudioApp';

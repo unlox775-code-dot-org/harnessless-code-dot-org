@@ -1,4 +1,4 @@
-import firehoseClient from '../../lib/util/firehose';
+import firehoseClient from '../../lib/util/harness';
 
 export function recordImpression(study_group) {
   firehoseClient.putRecord({

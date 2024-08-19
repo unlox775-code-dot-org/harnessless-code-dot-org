@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import Button from '@cdo/apps/legacySharedComponents/Button';
 import {EVENTS} from '@cdo/apps/lib/util/AnalyticsConstants';
 import analyticsReporter from '@cdo/apps/lib/util/AnalyticsReporter';
-import firehoseClient from '@cdo/apps/lib/util/firehose';
+import firehoseClient from '@cdo/apps/lib/util/harness';
 import {windowOpen} from '@cdo/apps/utils';
 import i18n from '@cdo/locale';
 

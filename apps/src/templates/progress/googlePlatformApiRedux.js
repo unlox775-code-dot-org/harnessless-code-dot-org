@@ -1,4 +1,4 @@
-import firehoseClient from '@cdo/apps/lib/util/firehose';
+import firehoseClient from '@cdo/apps/lib/util/harness';
 
 /*
  * The Google Classroom Share Button is only available through the google

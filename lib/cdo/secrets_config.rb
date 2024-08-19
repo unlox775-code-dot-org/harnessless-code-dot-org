@@ -140,7 +140,6 @@ module Cdo
     # Resolve secret references to lazy-loaded values.
     private def lazy_load_secrets!
       self.cdo_secrets ||= Cdo.lazy do
-        require 'cdo/secrets'
         Cdo::Secrets.new(logger: log)
       end
 

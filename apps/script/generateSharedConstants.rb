@@ -12,7 +12,6 @@ require 'require_all'
 
 require_relative '../../lib/cdo/shared_constants'
 require_relative '../../lib/cdo/shared_constants/curriculum/shared_course_constants'
-autoload_all File.expand_path('../../lib/cdo/shared_constants/pd', File.dirname(__FILE__))
 
 REPO_DIR = File.expand_path('../../../', __FILE__)
 

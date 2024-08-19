@@ -8,7 +8,7 @@ import {Provider} from 'react-redux';
 
 import ErrorBoundary from '@cdo/apps/lab2/ErrorBoundary';
 import {ErrorFallbackPage} from '@cdo/apps/lab2/views/ErrorFallbackPage';
-import firehoseClient from '@cdo/apps/lib/util/firehose';
+import firehoseClient from '@cdo/apps/lib/util/harness';
 import {showArrowButtons} from '@cdo/apps/templates/arrowDisplayRedux';
 import {SignInState} from '@cdo/apps/templates/currentUserRedux';
 

@@ -56,7 +56,7 @@ import Alert from './legacySharedComponents/alert';
 import {isEditWhileRun} from './lib/tools/jsdebugger/redux';
 import {RESIZE_VISUALIZATION_EVENT} from './lib/ui/VisualizationResizeBar';
 import WireframeButtons from './lib/ui/WireframeButtons';
-import firehoseClient from './lib/util/firehose';
+import firehoseClient from './lib/util/harness';
 import {configCircuitPlayground, configMicrobit} from './maker/dropletConfig';
 import puzzleRatingUtils from './puzzleRatingUtils';
 import {getStore} from './redux';

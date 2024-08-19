@@ -8,7 +8,7 @@ import {getSelectedScriptFriendlyName} from '@cdo/apps/redux/unitSelectionRedux'
 import i18n from '@cdo/locale';
 
 import {h3Style} from '../../legacySharedComponents/Headings';
-import firehoseClient from '../../lib/util/firehose';
+import firehoseClient from '../../lib/util/harness';
 import color from '../../util/color';
 
 import {ViewType, unitDataPropType} from './sectionProgressConstants';
