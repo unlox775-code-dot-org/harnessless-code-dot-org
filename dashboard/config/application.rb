@@ -95,6 +95,7 @@ module Dashboard
     # config.time_zone = 'Central Time (US & Canada)'
 
     # By default, config/locales/*.rb,yml are auto loaded.
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.json').to_s]
     config.i18n.load_path += Dir[Rails.root.join(CDO.locale_content_dir,'dashboard','config', 'locales', '*.{rb,yml,json}').to_s]
     config.i18n.backend = CDO.i18n_backend
     config.i18n.enforce_available_locales = false
