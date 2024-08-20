@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: ruby_server
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: dashboard_development
+      MYSQL_USER: not_used_app_user
+      MYSQL_PASSWORD: not-used-app-password
+    ports:
+      - "13306:3306"
+
+  redis:
+    image: redis:alpine
+    container_name: redis_server
+    ports:
+      - "16379:6379"
