@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'erb'
 require 'sass/plugin/rack'
 require 'dynamic_config/dcdo'
+require 'cdo/graphics'
 
 class SharedResources < Sinatra::Base
   use Sass::Plugin::Rack

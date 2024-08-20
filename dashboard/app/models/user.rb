@@ -268,8 +268,6 @@ class User < ApplicationRecord
   before_validation :normalize_parent_email
   validate :validate_parent_email
 
-  after_create :associate_with_potential_pd_enrollments
-
   before_create :save_show_progress_table_v2
 
   after_save :save_email_preference, if: -> {email_preference_opt_in.present?}
@@ -2790,10 +2788,6 @@ class User < ApplicationRecord
   # ex: ["csf", "csd"]
   private def curriculums_being_taught
     @curriculums_being_taught ||= sections_instructed.filter_map {|section| section.script&.curriculum_umbrella}.uniq
-  end
-
-  private def has_attended_pd?
-    pd_attendances.any?
   end
 
   private def school_stats
