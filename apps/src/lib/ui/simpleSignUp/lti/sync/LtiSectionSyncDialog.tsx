@@ -93,7 +93,7 @@ export default function LtiSectionSyncDialog({
     analyticsReporter.sendEvent(
       'lti_opt_out_click',
       eventPayload,
-      PLATFORMS.STATSIG
+      null
     );
     return (
       <div data-testid={'disable-roster-sync'}>
@@ -125,7 +125,7 @@ export default function LtiSectionSyncDialog({
         analyticsReporter.sendEvent(
           'lti_opt_out_confirm',
           eventPayload,
-          PLATFORMS.STATSIG
+          null
         );
         handleClose();
       },
@@ -139,7 +139,7 @@ export default function LtiSectionSyncDialog({
     analyticsReporter.sendEvent(
       'lti_opt_out_documentation',
       eventPayload,
-      PLATFORMS.STATSIG
+      null
     );
   };
 

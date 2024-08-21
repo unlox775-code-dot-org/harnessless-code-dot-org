@@ -8,8 +8,8 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy the Gemfile and Gemfile.lock first to leverage Docker's cache
+COPY Gemfile Gemfile.lock ./
 
 # Set up a Python virtual environment and install PDM
 RUN python3 -m venv /app/venv && \
@@ -18,6 +18,9 @@ RUN python3 -m venv /app/venv && \
 
 # Install the specified version of Bundler and Ruby dependencies
 RUN gem install bundler -v 2.3.22 && bundle install
+
+# Copy the rest of the application code (causes docker to cache the previous steps)
+COPY . .
 
 # Install Node.js dependencies using the Ruby rake task
 RUN /bin/bash -c "source /app/venv/bin/activate && bundle exec rake install"
