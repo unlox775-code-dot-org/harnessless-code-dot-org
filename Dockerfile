@@ -16,17 +16,18 @@ RUN python3 -m venv /app/venv && \
     /app/venv/bin/pip install --upgrade pip && \
     /app/venv/bin/pip install "pdm>=2.17"
 
+# Install yarn
+RUN npm install -g yarn
+
 # Install the specified version of Bundler and Ruby dependencies
 RUN gem install bundler -v 2.3.22 && bundle install
 
 # Copy the rest of the application code (causes docker to cache the previous steps)
+# NOTE: this is overriden by docker-compose, as it mounts the local directory over the top of /app
 COPY . .
-
-# Install Node.js dependencies using the Ruby rake task
-RUN /bin/bash -c "source /app/venv/bin/activate && bundle exec rake install"
 
 # Expose port 3000 to the host
 EXPOSE 3000
 
-# Define the command to run your application
-CMD ["/bin/bash", "-c", "source /app/venv/bin/activate && ./bin/dashboard-server"]
+# Define the command to run your application (overriden by docker-compose)
+CMD ["/bin/bash", "-c", "./bin/dashboard-server"]

@@ -11,13 +11,18 @@ services:
     depends_on:
       - db
       - redis
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: mysql2://root:@db/dashboard_development
+    command: ./docker-entrypoint.sh
 
   db:
     image: mysql:8.0
     container_name: mysql_db
     environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_ROOT_PASSWORD: ""
-      MYSQL_DATABASE: dashboard_development
+      MYSQL_DATABASE: not_used_db
       MYSQL_USER: not_used_app_user
       MYSQL_PASSWORD: not-used-app-password
     ports:
