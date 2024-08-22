@@ -98,6 +98,49 @@ class BucketHelper
   def self.s3_get_object(key, if_modified_since, version)
     # Stub
   end
+
+  # Emulate S3 get object by reading from the local file system
+  def get(encrypted_channel_id, filename, if_modified_since = nil, version = nil)
+    # Decrypt the channel ID to get the owner_id and storage_app_id
+    owner_id, storage_app_id = storage_decrypt_channel_id(encrypted_channel_id)
+    
+    # Construct the file path based on the owner_id, storage_app_id, and filename
+    path = File.join("/student-data/channels", owner_id, storage_app_id, filename)
+    
+    if File.exist?(path)
+      # Return a hash to simulate the S3 object response
+      {
+        status: 'FOUND',
+        body: File.read(path),
+        version_id: nil, # No versioning in the local file system
+        last_modified: File.mtime(path),
+        metadata: {} # You could add metadata if needed
+      }
+    else
+      { status: 'NOT_FOUND' }
+    end
+  rescue ArgumentError, OpenSSL::Cipher::CipherError
+    { status: 'NOT_FOUND' }
+  end
+
+  # Emulate S3 put object by writing to the local file system
+  def create_or_replace(encrypted_channel_id, filename, body, version = nil, abuse_score = 0)
+    # Decrypt the channel ID to get the owner_id and storage_app_id
+    owner_id, storage_app_id = storage_decrypt_channel_id(encrypted_channel_id)
+    
+    # Construct the file path based on the owner_id, storage_app_id, and filename
+    path = File.join("/student-data/channels", owner_id, storage_app_id, filename)
+    
+    # Create the directory structure if it doesn't exist
+    dir = File.dirname(path)
+    FileUtils.mkdir_p(dir) unless Dir.exist?(dir)
+    
+    # Write the data to the file
+    File.write(path, body)
+    
+    # Since there's no versioning in the local file system, just return a mock response
+    { status: 'SUCCESS', path: path }
+  end
 end
 
 # Debugger outputting what parts of the code are running on slow non-outputting scripts

@@ -19,6 +19,7 @@ services:
       - build_artifacts_misc:/app/dashboard/tmp
       - build_artifacts_misc:/app/assets
       - build_artifacts_seed_flag:/app/dashboard/config/scripts
+      - student_data:/student-data
       
     ports:
       - "3000:3000"
@@ -60,4 +61,4 @@ volumes:
   build_artifacts_webpack:
   build_artifacts_misc:
   build_artifacts_seed_flag:
-
+  student_data:

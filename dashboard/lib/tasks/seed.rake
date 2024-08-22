@@ -465,9 +465,16 @@ namespace :seed do
     sql_import_file = curriculum_dir('seed_all.sql')
     raise "No seed_all.sql file found" unless File.exist?(sql_import_file)
 
+    writer = URI.parse(ENV['DATABASE_URL'] || CDO.dashboard_db_writer)
+    database = writer.path.sub(%r{^/}, "") || "dashboard_#{Rails.env}"
+    host = writer.host || 'localhost'
+    port = writer.port || 3306
+    username = writer.user || 'root'
+    password = writer.password || ''
+
     # This command will import the data from the file into the dashboard_test database
     puts "Quick Importing data from #{sql_import_file}"
-    sh("mysql -u root -h db --password='' dashboard_development < #{sql_import_file}")
+    sh("mysql -u #{username} -p'#{password}' -h #{host} -P #{port} #{database} < #{sql_import_file}")
   end
 
   FULL_SEED_TASKS = [:check_migrations, :videos, :concepts, :scripts, :courses, :reference_guides, :data_docs, :callouts, :school_districts, :schools, :secret_words, :secret_pictures, :datablock_storage].freeze

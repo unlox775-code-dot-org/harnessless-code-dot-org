@@ -81,6 +81,28 @@ This document outlines the strategy for decoupling the Code.org codebase into mo
    - Create the code-dot-org-harness repository, containing all proprietary business logic, third-party integrations, and operational tools.
    - Ensure that the harness can be optionally integrated with the harnessless LMS or run as part of Code.org's infrastructure.
 
+## Optimizations for External Developers
+
+###  Runs under docker now
+
+Due to a simpler stack this wasn't too hard to do.
+
+### Sped up quick-seed process, using a .sql file to seed the database
+
+To generate the seed file I spun up a code-dot-org instance, with a brand new DB, and after seeeding I ran the following command:
+
+```bash
+mysqldump -u root -p --no-tablespaces --no-create-info dashboard_development \
+activity_sections levels_script_levels script_levels parent_levels_child_levels lesson_activities stages_standards level_concept_difficulties stages objectives level_sources resources lessons_resources standards lessons_vocabularies lesson_groups lessons_programming_expressions reference_guides vocabularies learning_goal_evidence_levels scripts scripts_resources videos plc_learning_modules course_versions course_offerings course_scripts programming_expressions blocks standard_categories unit_groups_resources learning_goals concepts_levels unit_groups programming_methods plc_course_units data_docs datablock_storage_records google_sheets_shared_cdo_languages lessons_opportunity_standards games libraries rubrics programming_environment_categories callouts programming_classes plc_courses secret_pictures schools shared_blockly_functions frameworks school_districts concepts secret_words programming_environments seed_info datablock_storage_library_manifest datablock_storage_tables \
+> seed_all.sql
+
+mysqldump -u root -p --no-tablespaces --no-create-info dashboard_development levels \
+--where="properties NOT LIKE '%encrypted_:_1%';" \
+>> seed_all.sql
+```
+
+NOTE: this also attempts to exclude encrypted levels, but I'm not sure how critical or not that is.  It means external developers won't have to worry about the encryption keys, but it also means they won't be able to use the encrypted levels.
+
 ## Remaining Work
 
 This is a rough proof-of-concept, I have disabled linting errors, and set npm build to --force.  In general I know there are a lot of broken references, and should this (unlikely) be moved forward to make this a real thing, simply turning the warnings back on and fixing them would make an easy checklist of things to do.
