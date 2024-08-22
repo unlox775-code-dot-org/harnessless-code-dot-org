@@ -12,6 +12,8 @@ To load our curriculum and locale data, you'll also need to check out these repo
 - [code-dot-org-curriculum](https://github.com/unlox775-code-dot-org/code-dot-org-curriculum-content)
 - [code-dot-org-locale](https://github.com/unlox775-code-dot-org/code-dot-org-locale-content)
 
+NOTE: if you'd like to run without docker, you can follow the instructions in [BUILD-STEPS.md](./BUILD-STEPS.md).
+
 ## How to help
 
 Wondering where to start?  See our [contribution guidelines](CONTRIBUTING.md).
