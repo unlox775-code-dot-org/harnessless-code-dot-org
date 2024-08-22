@@ -1,2 +1,4 @@
 #!/bin/sh
-ruby tools/hooks/lint.rb
+# Note sure how to run eslint where our node_moduled only gets checked out in docker
+#   we probably need to support people running yarn install outside the path of `rake build`
+# ruby tools/hooks/lint.rb

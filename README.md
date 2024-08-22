@@ -4,12 +4,13 @@ Welcome! You've found the source code for [the Code.org website](https://code.or
 
 ## Quick start
 
-1. Follow our [setup guide](./SETUP.md) to configure your workstation.
-2. `rake build` to build the application if you have not done so already
-3. `bin/dashboard-server` to launch the development server.
-4. Open your browser to [http://localhost-studio.code.org:3000/](http://localhost-studio.code.org:3000/).
+1. Install docker
+2. `docker-compose up`
+3. Open your browser to [http://localhost:3000/](http://localhost:3000/).
 
-To see a list of all build commands, run `rake` from the repository root.
+To load our curriculum and locale data, you'll also need to check out these repositories:
+- [code-dot-org-curriculum](https://github.com/unlox775-code-dot-org/code-dot-org-curriculum-content)
+- [code-dot-org-locale](https://github.com/unlox775-code-dot-org/code-dot-org-locale-content)
 
 ## How to help
 
@@ -20,7 +21,6 @@ Here's a quick overview of the major landmarks:
 
 ### Documentation
 
-* [SETUP](./SETUP.md): Instructions to get everything up and running.
 * [TESTING](./TESTING.md): How to be sure nothing broke.
 * [STYLEGUIDE](./STYLEGUIDE.md): Our code style conventions.
 * Our [LICENSE](./LICENSE) and [NOTICE](./NOTICE).
@@ -49,9 +49,7 @@ Start here if you are looking for:
 
 ### Everything else
 
-* **aws**: Configuration and scripts that manage our deployments.
 * **bin**: Developer utilities.
-* **cookbooks**: Configuration management through [Chef](https://www.chef.io/).
 * **shared**: Source and assets used by many parts of our application.
 * **tools**: Git commit hooks.
 

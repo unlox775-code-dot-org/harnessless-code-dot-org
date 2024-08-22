@@ -16,9 +16,8 @@ Dashboard::Application.configure do
 
   # Make sure to support our custom localhost-shadowing subdomains. See
   # https://guides.rubyonrails.org/configuring.html#configuring-middleware
+  config.hosts << "localhost"
   config.hosts << "localhost-studio.code.org"
-  config.hosts << "localhost.code.org"
-  config.hosts << "localhost.hourofcode.com"
   config.hosts << "localhost.codeprojects.org"
 
   # Do not eager load code on boot.

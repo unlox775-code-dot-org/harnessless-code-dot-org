@@ -25,12 +25,12 @@ class ApplicationHelperTest < ActionView::TestCase
   test "canonical_hostname in CI" do
     set_env :test
     CDO.stubs(:ci_webserver?).returns(true)
-    assert_equal 'localhost-studio.code.org', CDO.canonical_hostname('studio.code.org')
+    assert_equal 'localhost', CDO.canonical_hostname('studio.code.org')
   end
 
   test "canonical_hostname in development" do
     set_env :development
-    assert_equal 'localhost-studio.code.org', CDO.canonical_hostname('studio.code.org')
+    assert_equal 'localhost', CDO.canonical_hostname('studio.code.org')
   end
 
   test "windows phone 8.1 supported" do

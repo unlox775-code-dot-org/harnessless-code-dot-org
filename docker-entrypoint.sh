@@ -3,6 +3,11 @@ set -e
 
 # Check if the database has been seeded
 if [ ! -f /app/dashboard/config/scripts/.seeded ]; then
+  echo "Prep for quick start... Dropping DB..."
+  cd dashboard
+  bundle exec rake db:drop
+  cd ..
+
   echo "Database not seeded, running rake install..."
   bundle exec rake install
 else
@@ -10,7 +15,7 @@ else
 fi
 
 # Check if the build directory exists
-if [ ! -d /app/apps/build ]; then
+if [ ! -e /app/apps/build/commit_hash ]; then
   echo "Build directory not found, running rake build..."
   bundle exec rake build
 else

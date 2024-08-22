@@ -42,7 +42,7 @@ use_my_apps: true
 # Until you manually run `rake seed:all` or disable this flag, you won't
 # see changes to: videos, concepts, levels, scripts, trophies, prize providers,
 # callouts, hints, secret words, or secret pictures.
-#skip_seed_all: true
+skip_seed_all: true
 
 
 # Whether to store sprocket asset cache on disk or in memory. Setting this to
@@ -143,3 +143,4 @@ use_my_apps: true
 
 # Harness configuration
 locale_content_dir: ../default-locale-content
+curriculum_content_dir: ../curriculum-content

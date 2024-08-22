@@ -11,8 +11,15 @@ services:
       - ${CURRICULUM_CONTENT_DIR:-../curriculum-content}:/curriculum-content
       - ${LOCALE_CONTENT_DIR:-../default-locale-content}:/locale-content
       - .:/app
-      - build_node_modules:/app/apps/node_modules
-      - build_webpack:/app/apps/build
+      # keeps local-run build artifacts from mixing with docker build artifacts
+      - build_artifacts_node_modules:/app/apps/node_modules
+      - build_artifacts_webpack:/app/apps/build
+      - build_artifacts_yarn:/app/apps/.yarn
+      - build_artifacts_misc:/app/apps/generated-scripts
+      - build_artifacts_misc:/app/dashboard/tmp
+      - build_artifacts_misc:/app/assets
+      - build_artifacts_seed_flag:/app/dashboard/config/scripts
+      
     ports:
       - "3000:3000"
     depends_on:
@@ -48,5 +55,9 @@ services:
 
 volumes:
   mysql_data:
-  build_node_modules:
-  build_webpack:
+  build_artifacts_yarn:
+  build_artifacts_node_modules:
+  build_artifacts_webpack:
+  build_artifacts_misc:
+  build_artifacts_seed_flag:
+
