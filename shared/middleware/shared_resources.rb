@@ -15,7 +15,7 @@ class SharedResources < Sinatra::Base
   end
 
   def self.load_supported_locales
-    Dir.glob(locale_content_dir('cache', 'i18n', '*.json')).map do |i|
+    Dir.glob(locale_dir('cache', 'i18n', '*.json')).map do |i|
       File.basename(i, '.json').downcase
     end.sort
   end

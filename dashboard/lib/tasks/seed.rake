@@ -34,7 +34,7 @@ namespace :seed do
   end
 
   # Path to the dashboard directory from which content files (under /config) should be read.
-  CURRICULUM_CONTENT_DIR = ENV['CURRICULUM_CONTENT_DIR'] || '.'
+  CURRICULUM_CONTENT_DIR = ENV['OVERRIDE_CURRICULUM_CONTENT_DIR'] || curriculum_dir('dashboard') || '.'
   CURRICULUM_CONTENT_PATHNAME = Pathname(CURRICULUM_CONTENT_DIR)
 
   timed_task_with_logging videos: :environment do
@@ -458,12 +458,25 @@ namespace :seed do
     sh('mysqldump -u root -B dashboard_test > db/ui_test_data.sql')
   end
 
+  timed_task_with_logging :load_from_sql_import do
+    # This task is used to load data from a SQL import file
+    # The import file should be created by running the following
+    # command in the dashboard directory:
+    sql_import_file = curriculum_dir('seed_all.sql')
+    raise "No seed_all.sql file found" unless File.exist?(sql_import_file)
+
+    # This command will import the data from the file into the dashboard_test database
+    puts "Quick Importing data from #{sql_import_file}"
+    sh("mysql -u root --password='' dasboard_development < #{sql_import_file}")
+  end
+
   FULL_SEED_TASKS = [:check_migrations, :videos, :concepts, :scripts, :courses, :reference_guides, :data_docs, :callouts, :school_districts, :schools, :secret_words, :secret_pictures, :datablock_storage].freeze
   UI_TEST_SEED_TASKS = [:check_migrations, :videos, :concepts, :course_offerings_ui_tests, :scripts_ui_tests, :courses_ui_tests, :callouts, :school_districts, :schools, :secret_words, :secret_pictures, :datablock_storage].freeze
   DEFAULT_SEED_TASKS = [:adhoc, :test].include?(rack_env) ? UI_TEST_SEED_TASKS : FULL_SEED_TASKS
 
   desc "seed the data needed for this type of environment by default"
   timed_task_with_logging default: DEFAULT_SEED_TASKS
+  timed_task_with_logging quick: [:load_from_sql_import]
   desc "seed all dashboard data"
   timed_task_with_logging all: FULL_SEED_TASKS
   timed_task_with_logging ui_test: UI_TEST_SEED_TASKS

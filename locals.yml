@@ -143,3 +143,4 @@ use_my_apps: true
 
 # Harness configuration
 locale_content_dir: /Users/dave/Downloads/2024-07-23_repo_analysis/default-locale-content
+curriculum_content_dir: /Users/dave/Downloads/2024-07-23_repo_analysis/curriculum-content

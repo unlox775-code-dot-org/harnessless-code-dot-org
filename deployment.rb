@@ -60,8 +60,12 @@ def dashboard_dir(*dirs)
   deploy_dir('dashboard', *dirs)
 end
 
-def locale_content_dir(*dirs)
-  deploy_dir(CDO.locale_content_dir, *dirs)
+def locale_dir(*dirs)
+  File.join(ENV['LOCALE_CONTENT_DIR'] || CDO.locale_content_dir, *dirs)
+end
+
+def curriculum_dir(*dirs)
+  File.join(ENV['CURRICULUM_CONTENT_DIR'] || CDO.locale_content_dir, *dirs)
 end
 
 def dashboard_legacy_dir(*dirs)

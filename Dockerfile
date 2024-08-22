@@ -3,7 +3,9 @@ FROM amd64/ruby:3.0.5
 
 # Install Node.js 18.16.0 and Python 3 (with virtual environment support)
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get install -y nodejs=18.16.0-1nodesource1 python3 python3-venv
+    apt-get install -y nodejs=18.16.0-1nodesource1 python3 python3-venv && \
+    apt-get update && \
+    apt-get install -y default-mysql-client
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -23,11 +25,11 @@ RUN npm install -g yarn
 RUN gem install bundler -v 2.3.22 && bundle install
 
 # Copy the rest of the application code (causes docker to cache the previous steps)
-# NOTE: this is overriden by docker-compose, as it mounts the local directory over the top of /app
+# NOTE: this is overridden by docker-compose, as it mounts the local directory over the top of /app
 COPY . .
 
 # Expose port 3000 to the host
 EXPOSE 3000
 
-# Define the command to run your application (overriden by docker-compose)
+# Define the command to run your application (overridden by docker-compose)
 CMD ["/bin/bash", "-c", "./bin/dashboard-server"]

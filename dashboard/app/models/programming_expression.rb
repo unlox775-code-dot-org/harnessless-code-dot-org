@@ -349,7 +349,7 @@ class ProgrammingExpression < ApplicationRecord
   end
 
   def file_path
-    Rails.root.join("config/programming_expressions/#{programming_environment.name}/#{key.parameterize(preserve_case: false)}.json")
+    curriculum_dir("dashboard/config/programming_expressions/#{programming_environment.name}/#{key.parameterize(preserve_case: false)}.json")
   end
 
   def serialize

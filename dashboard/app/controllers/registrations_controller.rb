@@ -3,7 +3,6 @@
 require 'cdo/mailjet'
 require 'cpa'
 require_relative '../../../shared/middleware/helpers/experiments'
-require 'metrics/events'
 require 'policies/lti'
 require 'queries/lti'
 

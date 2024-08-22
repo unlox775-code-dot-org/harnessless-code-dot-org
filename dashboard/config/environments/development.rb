@@ -34,6 +34,8 @@ Dashboard::Application.configure do
   # development.log if you want to look at them
   #config.action_mailer.perform_deliveries = false
   #config.action_mailer.raise_delivery_errors = false
+  log_path = ENV['LOG_PATH'] || "./log"
+  config.paths['log'] = "#{log_path}/development.log"
 
   # If you want to use mailcatcher, specify `use_mailcatcher: true` in locals.yml.
   if CDO.use_mailcatcher

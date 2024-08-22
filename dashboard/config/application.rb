@@ -1,3 +1,4 @@
+require_relative '../../harnessless_shims'
 require File.expand_path('../../../deployment', __FILE__)
 require 'rails/all'
 
