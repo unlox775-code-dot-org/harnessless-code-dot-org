@@ -462,8 +462,8 @@ namespace :seed do
     # This task is used to load data from a SQL import file
     # The import file should be created by running the following
     # command in the dashboard directory:
-    sql_import_file = curriculum_dir('seed_all.sql')
-    raise "No seed_all.sql file found" unless File.exist?(sql_import_file)
+    sql_import_file = curriculum_dir('seed_all.sql.gz')
+    raise "No seed_all.sql.gz file found" unless File.exist?(sql_import_file)
 
     writer = URI.parse(ENV['DATABASE_URL'] || CDO.dashboard_db_writer)
     database = writer.path.sub(%r{^/}, "") || "dashboard_#{Rails.env}"
@@ -472,9 +472,15 @@ namespace :seed do
     username = writer.user || 'root'
     password = writer.password || ''
 
+    # Decide on either gzcat or zcat based on which is available in the system
+    gzcat = `which gzcat`.strip
+    zcat = `which zcat`.strip
+    raise "No gzcat or zcat found" if gzcat.empty? && zcat.empty?
+    zcat_command = gzcat.empty? ? 'zcat' : 'gzcat'
+
     # This command will import the data from the file into the dashboard_test database
-    puts "Quick Importing data from #{sql_import_file}"
-    sh("mysql -u #{username} --password='#{password}' -h #{host} -P #{port} #{database} < #{sql_import_file}")
+    puts "Quick Importing data from #{sql_import_file} to #{database}@#{host}:#{port}"
+    sh("#{zcat_command} #{sql_import_file} | mysql -u #{username} --password='#{password}' -h #{host} -P #{port} #{database}")
   end
 
   FULL_SEED_TASKS = [:check_migrations, :videos, :concepts, :scripts, :courses, :reference_guides, :data_docs, :callouts, :school_districts, :schools, :secret_words, :secret_pictures, :datablock_storage].freeze
